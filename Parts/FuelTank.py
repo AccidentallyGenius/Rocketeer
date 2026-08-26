@@ -1,10 +1,11 @@
-from Old.Parts.Part import Part
+from Parts.Part import Part
 
 class FuelTank(Part):
     FUEL_DENSITY = 0.8
 
-    def __init__(self, name, dryMass, height, fuelCapacity, imagePath):
-        super().__init__(name, dryMass, height, imagePath)
+    def __init__(self, name, mass, width, height, fuelCapacity, imagePath):
+        super().__init__(name, mass, width, height, imagePath)
+
         self.fuelCapacity = fuelCapacity
         self.fuel = fuelCapacity
 
