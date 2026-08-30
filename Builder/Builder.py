@@ -4,32 +4,101 @@ from Rocket.Rocket import Rocket
 class Builder:
     def __init__(self):
         self.rocket = Rocket()
-        self.buildArea = pygame.Rect(200, 50, 900, 600)
+        self.buildArea = pygame.Rect(200, 50, 800, 600)
         self.placedParts = []
 
     def addPart(self, buildPart):
-        self.snapPart(buildPart)
+        if not self.isInsideBuildArea(buildPart):
+            return False
+
+        snap = self.findSnap(buildPart)
+        if snap is not None:
+            self.applySnap(buildPart, snap)
+            snapPos, side, placedPart = snap
+            self.rocket.addAttachment(placedPart, buildPart)
+
         self.placedParts.append(buildPart)
+        self.rocket.addPart(buildPart)
+        self.rocket.updatePositions()
+
+        return True
+
+    def removePart(self, buildPart):
+        if buildPart not in self.placedParts:
+            return False
+
+        self.placedParts.remove(buildPart)
+        self.rocket.removePart(buildPart)
+        self.rocket.removePartAttachments(buildPart)
+
+        return True
 
     def isInsideBuildArea(self, buildPart):
         return self.buildArea.collidepoint(buildPart.x, buildPart.y)
 
-    def snapPart(self, buildPart):
-        SNAP_DISTANCE = 30
+    def getPartAt(self, mouseX, mouseY):
+        for buildPart in reversed(self.placedParts):
+            if buildPart.containsPoint(mouseX, mouseY):
+                return buildPart
+
+        return None
+
+    def canAttach(self, parent, child):
+        if parent.getBottomPoint() is None:
+            return False
+        if child.getTopPoint() is None:
+            return False
+
+        return True
+
+    def findSnap(self, buildPart):
+        SNAP_DISTANCE = 50
 
         for placedPart in self.placedParts:
-            topX, topY = placedPart.getTopPoint()
-            bottomX, bottomY = placedPart.getBottomPoint()
+            if placedPart == buildPart:
+                continue
 
-            newX, newY = buildPart.getTopPoint()
+            parentPoint = placedPart.getBottomPoint()
+            childPoint = buildPart.getTopPoint()
 
-            distX = abs(newX - bottomX)
-            distY = abs(newY - bottomY)
+            if parentPoint is not None and childPoint is not None:
+                if parentPoint.distance_to(childPoint) <= SNAP_DISTANCE:
+                    return parentPoint, "top", placedPart
 
-            if distX < SNAP_DISTANCE and distY < SNAP_DISTANCE:
-                buildPart.x = bottomX
-                buildPart.y = bottomY - buildPart.rect.height / 2
-                buildPart.rect.center = (buildPart.x, buildPart.y)
+            parentPoint = placedPart.getTopPoint()
+            childPoint = buildPart.getBottomPoint()
 
-                return True
-        return False
+            if parentPoint is not None and childPoint is not None:
+                if parentPoint.distance_to(childPoint) <= SNAP_DISTANCE:
+                    return parentPoint, "bottom", placedPart
+
+        return None
+
+    def snapPart(self, buildPart):
+        snap = self.findSnap(buildPart)
+
+        if snap is None:
+            return False
+
+        self.applySnap(buildPart, snap)
+        return True
+
+    def applySnap(self, buildPart, snap):
+        snapPos, side, placedPart = snap
+
+        if side == "top":
+            attachment = buildPart.getTopPoint()
+        elif side == "bottom":
+            attachment = buildPart.getBottomPoint()
+        else:
+            return None
+
+        if attachment is None:
+            return False
+
+        offset = snapPos - attachment
+        buildPart.x += offset.x
+        buildPart.y += offset.y
+        buildPart.rect.center = (buildPart.x, buildPart.y)
+
+        return True

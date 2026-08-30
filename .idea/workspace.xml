@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aab5a08c-52c6-4326-93a7-2dda4706d0cc" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/Parts/Engine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parts/FuelTank.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parts/NoseCone.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parts/Part.py" afterDir="false" />
+    <list default="true" id="aab5a08c-52c6-4326-93a7-2dda4706d0cc" name="Changes" comment="Overhauled">
+      <change afterPath="$PROJECT_DIR$/Rocket/Attachment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Simulation/Flight.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Simulation/FlightRenderer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Simulation/Physics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Simulation/PhysicsBody.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part.py" beforeDir="false" afterPath="$PROJECT_DIR$/Builder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rocket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Builder/Attachment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Builder/BuildPart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Builder/BuildPart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Builder/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Builder/Builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parts/Engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/Engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parts/FuelTank.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/FuelTank.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parts/NoseCone.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/NoseCone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parts/Part.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/Part.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rendering/Renderer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rendering/Renderer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rocket/Rocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rocket/Rocket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,23 +60,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Renderer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Armaan/Rocketeer/Images&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Builder.executor": "Run",
+    "Python.FlightRenderer.executor": "Run",
+    "Python.FuelTank.executor": "Run",
+    "Python.PartInventory.executor": "Run",
+    "Python.Renderer.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Armaan/Rocketeer/Images"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Armaan\Rocketeer\Images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Armaan\Rocketeer\Renderers" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\NoseCones" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\FuelTanks" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\Engines" />
       <recent name="C:\Users\Armaan\Rocketeer\Parts" />
+      <recent name="C:\Users\Armaan\Rocketeer\Old" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -103,11 +119,40 @@
       <option name="project" value="LOCAL" />
       <updated>1787522388212</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version 1">
+      <option name="closed" value="true" />
+      <created>1787707662772</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1787707662772</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Overhauled">
+      <option name="closed" value="true" />
+      <created>1787713543658</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1787713543658</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Version 1" />
+    <MESSAGE value="Overhauled" />
+    <option name="LAST_COMMIT_MESSAGE" value="Overhauled" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -14,6 +14,7 @@ class BuildPart:
         self.dragging = False
         self.offsetX = 0
         self.offsetY = 0
+        self.localPos = pygame.Vector2(0, 0)
 
     def containsPoint(self, mouseX, mouseY):
         return self.rect.collidepoint(mouseX, mouseY)
@@ -21,8 +22,8 @@ class BuildPart:
     def startDrag(self, mouseX, mouseY):
         self.dragging = True
 
-        self.x = mouseX + self.offsetX
-        self.y = mouseY + self.offsetY
+        self.offsetX = self.x - mouseX
+        self.offsetY = self.y - mouseY
 
     def drag(self, mouseX, mouseY):
         if self.dragging:
@@ -35,7 +36,13 @@ class BuildPart:
         self.dragging = False
 
     def getTopPoint(self):
-        return self.x, self.rect.top
+        if self.part.topAttachment is None:
+            return None
+
+        return pygame.Vector2(self.x, self.y - self.image.get_height() / 2)
 
     def getBottomPoint(self):
-        return self.x, self.rect.bottom
+        if self.part.bottomAttachment is None:
+            return None
+
+        return pygame.Vector2(self.x, self.y + self.image.get_height() / 2)

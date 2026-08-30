@@ -4,7 +4,7 @@ class FuelTank(Part):
     FUEL_DENSITY = 0.8
 
     def __init__(self, name, mass, width, height, fuelCapacity, imagePath):
-        super().__init__(name, mass, width, height, imagePath)
+        super().__init__(name, mass, width, height, imagePath, topAttachment=True, bottomAttachment=True)
 
         self.fuelCapacity = fuelCapacity
         self.fuel = fuelCapacity
