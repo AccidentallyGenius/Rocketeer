@@ -4,22 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aab5a08c-52c6-4326-93a7-2dda4706d0cc" name="Changes" comment="Overhauled">
-      <change afterPath="$PROJECT_DIR$/Rocket/Attachment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simulation/Flight.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simulation/FlightRenderer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simulation/Physics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simulation/PhysicsBody.py" afterDir="false" />
+    <list default="true" id="aab5a08c-52c6-4326-93a7-2dda4706d0cc" name="Changes" comment="Added a bunch of stuff">
+      <change afterPath="$PROJECT_DIR$/Images/Engines/LargeEngine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/Engines/RCSEngine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/Engines/SmallEngine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/Fairing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/FuelTanks/LargeFuelTank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/FuelTanks/SmallFuelTank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/FuelTanks/WideLargeFuelTank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/FuelTanks/WideSmallFuelTank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/Menus/Blueprint.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/NoseCones/NoseCone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parts/Fairing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Simulation/World.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Builder/Attachment.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Builder/BuildPart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Builder/BuildPart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Builder/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Builder/Builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Builder/PartInventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/Builder/PartInventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Engines/BasicEngine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/FuelTanks/BasicFuelTank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/NoseCones/BasicNoseCone.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Parts/Engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/Engine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parts/FuelTank.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/FuelTank.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parts/NoseCone.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/NoseCone.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parts/Part.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parts/Part.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rendering/Renderer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rendering/Renderer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rocket/Rocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rocket/Rocket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/Flight.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation/Flight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/FlightRenderer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rendering/FlightRenderer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/Physics.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation/Physics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation/PhysicsBody.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation/PhysicsBody.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,9 +76,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.BuildPart.executor": "Run",
     "Python.Builder.executor": "Run",
+    "Python.Flight.executor": "Run",
     "Python.FlightRenderer.executor": "Run",
     "Python.FuelTank.executor": "Run",
+    "Python.NoseCone.executor": "Run",
     "Python.PartInventory.executor": "Run",
     "Python.Renderer.executor": "Run",
     "Python.main.executor": "Run",
@@ -78,13 +95,15 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Armaan\Rocketeer\Images" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\FuelTanks" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\Menus" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Armaan\Rocketeer\Images\NoseCones" />
-      <recent name="C:\Users\Armaan\Rocketeer\Images\FuelTanks" />
       <recent name="C:\Users\Armaan\Rocketeer\Images\Engines" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\FuelTanks" />
+      <recent name="C:\Users\Armaan\Rocketeer\Rendering" />
+      <recent name="C:\Users\Armaan\Rocketeer\Images\NoseCones" />
       <recent name="C:\Users\Armaan\Rocketeer\Parts" />
-      <recent name="C:\Users\Armaan\Rocketeer\Old" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -135,14 +154,23 @@
       <option name="project" value="LOCAL" />
       <updated>1787713543658</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added a bunch of stuff">
+      <option name="closed" value="true" />
+      <created>1788119644125</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1788119644125</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Version 1" />
     <MESSAGE value="Overhauled" />
-    <option name="LAST_COMMIT_MESSAGE" value="Overhauled" />
+    <MESSAGE value="Added a bunch of stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a bunch of stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

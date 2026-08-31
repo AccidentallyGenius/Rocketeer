@@ -17,4 +17,14 @@ def updateBody(body, dT):
 
     body.velo += body.accl * dT
     body.pos += body.velo * dT
+
+    if body.momentOfInertia > 0:
+        angAccl = body.torque / body.momentOfInertia
+    else:
+        angAccl = 0
+
+    body.angVelo += angAccl * dT
+    body.angVelo *= 0.98
+    body.angle += body.angVelo * dT
     body.clearForce()
+    body.clearTorque()

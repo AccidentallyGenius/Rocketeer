@@ -6,10 +6,10 @@ class BuildPart:
 
         self.x = x
         self.y = y
-        self.rotation = 0
 
-        self.image = pygame.image.load(part.imagePath).convert_alpha()
+        self.image = pygame.transform.smoothscale_by(pygame.image.load(part.imagePath).convert_alpha(), 0.5)
         self.rect = self.image.get_rect(center=(x, y))
+        self.flipped = False
 
         self.dragging = False
         self.offsetX = 0
@@ -36,13 +36,30 @@ class BuildPart:
         self.dragging = False
 
     def getTopPoint(self):
-        if self.part.topAttachment is None:
+        if not self.part.topAttachment:
             return None
 
         return pygame.Vector2(self.x, self.y - self.image.get_height() / 2)
 
     def getBottomPoint(self):
-        if self.part.bottomAttachment is None:
+        if not self.part.bottomAttachment:
             return None
 
         return pygame.Vector2(self.x, self.y + self.image.get_height() / 2)
+
+    def getLeftPoint(self):
+        if not self.part.leftAttachment:
+            return None
+
+        return pygame.Vector2(self.x - self.image.get_width() / 2, self.y)
+
+    def getRightPoint(self):
+        if not self.part.rightAttachment:
+            return None
+
+        return pygame.Vector2(self.x + self.image.get_width() / 2, self.y)
+
+    def flipHorizontal(self):
+        self.image = pygame.transform.flip(self.image, True, False)
+        self.rect = self.image.get_rect(center=(self.x, self.y))
+        self.flipped = not self.flipped

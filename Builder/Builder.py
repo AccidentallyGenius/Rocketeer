@@ -4,12 +4,16 @@ from Rocket.Rocket import Rocket
 class Builder:
     def __init__(self):
         self.rocket = Rocket()
-        self.buildArea = pygame.Rect(200, 50, 800, 600)
+        self.buildArea = pygame.Rect(200, 25, 400, 550)
         self.placedParts = []
 
     def addPart(self, buildPart):
         if not self.isInsideBuildArea(buildPart):
             return False
+
+        if buildPart in self.placedParts:
+            return False
+
 
         snap = self.findSnap(buildPart)
         if snap is not None:
@@ -20,6 +24,7 @@ class Builder:
         self.placedParts.append(buildPart)
         self.rocket.addPart(buildPart)
         self.rocket.updatePositions()
+        self.rocket.updateMomentOfInertia()
 
         return True
 
@@ -27,9 +32,10 @@ class Builder:
         if buildPart not in self.placedParts:
             return False
 
+        self.rocket.removePartAttachments(buildPart)
         self.placedParts.remove(buildPart)
         self.rocket.removePart(buildPart)
-        self.rocket.removePartAttachments(buildPart)
+        self.rocket.updateMomentOfInertia()
 
         return True
 
@@ -51,8 +57,18 @@ class Builder:
 
         return True
 
+    def canSideAttach(self, parent, child):
+        if parent.getLeftPoint() is None and parent.getRightPoint() is None:
+            return False
+        if child.getLeftPoint() is None and parent.getRightPoint() is None:
+            return False
+
+        return True
+
     def findSnap(self, buildPart):
-        SNAP_DISTANCE = 50
+        SNAP_DISTANCE = 15
+        closestSnap = None
+        closestDistance = SNAP_DISTANCE
 
         for placedPart in self.placedParts:
             if placedPart == buildPart:
@@ -62,17 +78,46 @@ class Builder:
             childPoint = buildPart.getTopPoint()
 
             if parentPoint is not None and childPoint is not None:
-                if parentPoint.distance_to(childPoint) <= SNAP_DISTANCE:
-                    return parentPoint, "top", placedPart
+                distance = parentPoint.distance_to(childPoint)
+
+                if distance <= closestDistance:
+                    closestSnap = distance
+                    closestSnap = parentPoint, "top", placedPart
 
             parentPoint = placedPart.getTopPoint()
             childPoint = buildPart.getBottomPoint()
 
             if parentPoint is not None and childPoint is not None:
-                if parentPoint.distance_to(childPoint) <= SNAP_DISTANCE:
-                    return parentPoint, "bottom", placedPart
+                distance = parentPoint.distance_to(childPoint)
 
-        return None
+                if distance <= closestDistance:
+                    closestDistance = distance
+                    closestSnap = parentPoint, "bottom", placedPart
+
+            if not self.canSideAttach(placedPart, buildPart):
+                continue
+
+            parentPoint = placedPart.getLeftPoint()
+            childPoint = buildPart.getRightPoint()
+
+            if parentPoint is not None and childPoint is not None:
+                distance = parentPoint.distance_to(childPoint)
+
+                if distance <= closestDistance:
+                    closestDistance = distance
+                    closestSnap = parentPoint, "right", placedPart
+
+            parentPoint = placedPart.getRightPoint()
+            childPoint = buildPart.getLeftPoint()
+
+            if parentPoint is not None and childPoint is not None:
+                distance = parentPoint.distance_to(childPoint)
+
+                if distance <= closestDistance:
+                    closestDistance = distance
+                    closestSnap = parentPoint, "left", placedPart
+
+        return closestSnap
 
     def snapPart(self, buildPart):
         snap = self.findSnap(buildPart)
@@ -90,6 +135,10 @@ class Builder:
             attachment = buildPart.getTopPoint()
         elif side == "bottom":
             attachment = buildPart.getBottomPoint()
+        elif side == "left":
+            attachment = buildPart.getLeftPoint()
+        elif side == "right":
+            attachment = buildPart.getRightPoint()
         else:
             return None
 
@@ -101,4 +150,20 @@ class Builder:
         buildPart.y += offset.y
         buildPart.rect.center = (buildPart.x, buildPart.y)
 
-        return True
+        return
+
+    # def attachmentOccupied(self, placedPart, side):
+    #     for attachment in self.rocket.attachments:
+    #         if attachment.parent != placedPart:
+    #             continue
+    #
+    #         if side == "top" and attachment.child.getBottomPoint() is not None:
+    #             return True
+    #         if side == "bottom" and attachment.child.getTopPoint() is not None:
+    #             return True
+    #         if side == "left" and attachment.child.getRightPoint() is not None:
+    #             return True
+    #         if side == "right" and attachment.child.getLeftPoint() is not None:
+    #             return True
+    #
+    #     return True
